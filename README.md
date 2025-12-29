@@ -1,5 +1,6 @@
-# Spotify-Data-Analytics-Project
-👨‍💻 What I Did in This Project
+# 🎵 Spotify Data Analytics Project
+
+## 👨‍💻 What I Did in This Project
 
 In this project, I built a complete end-to-end data analytics pipeline. Here is a summary of my work:
 
@@ -67,4 +68,3 @@ Finally, I brought it all together.
 
 ---
 *Created by Varun - Data Analytics Project 2025*
-
