@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Analytics Pipeline - LinkedIn Edition</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* Prevent scrollbars in screenshot */
+        }
+
+        .linkedin-container {
+            /* 16:9 Aspect Ratio / Card style for LinkedIn */
+            background: linear-gradient(145deg, #181818 0%, #000000 100%);
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 0 4px #1DB954;
+            width: 1400px;
+            /* Fixed width for consistent high-res export */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #1DB954;
+            margin: 0 0 40px 0;
+            font-size: 3.5em;
+            /* Bigger title */
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #B3B3B3;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="linkedin-container">
+        <h1>Spotify Data Pipeline</h1>
+        <div class="subtitle">End-to-End Analytics Architecture</div>
+        <div class="mermaid">
+            %%{
+            init: {
+            'theme': 'base',
+            'themeVariables': {
+            'primaryColor': '#1DB954',
+            'primaryTextColor': '#fff',
+            'primaryBorderColor': '#fff',
+            'lineColor': '#fff',
+            'secondaryColor': '#1DB954',
+            'tertiaryColor': '#191414',
+            'fontFamily': 'Montserrat',
+            'fontSize': '20px'
+            },
+            'flowchart': {
+            'curve': 'basis',
+            'nodeSpacing': 50,
+            'rankSpacing': 80
+            }
+            }
+            }%%
+            graph LR
+            %% Define Nodes with Bold Labels
+            Start((🚀 START))
+
+            subgraph S1 [DATA INGESTION]
+            URLs[📄 URL List]:::file
+            PyScript[🐍 Python ETL]:::code
+            API{☁️ Spotify API}:::api
+            end
+
+            subgraph S2 [STORAGE & CLEANING]
+            DB[(🗄️ MySQL DB)]:::db
+            SQL[🧹 SQL Cleaning]:::code
+            end
+
+            subgraph S3 [VISUALIZATION]
+            DashPy[🐍 Dashboard Gen]:::code
+            Analysis[📊 Analytics Engine]:::calc
+            Final[✨ INTERACTIVE<br />DASHBOARD]:::final
+            end
+
+            %% Thick, Bright Connections
+            Start ==> URLs
+            URLs ==> PyScript
+            PyScript <==>|Authenticates| API
+                PyScript ==>|Inserts Data| DB
+
+                SQL -.->|Removes Duplicates| DB
+                DB ==> DashPy
+                DashPy --> Analysis
+                Analysis ==> Final
+
+                %% Styling for Impact
+                classDef default fill:#282828,stroke:#fff,stroke-width:2px,color:#fff,font-weight:bold;
+                classDef file fill:#2c3e50,stroke:#3498db,stroke-width:3px;
+                classDef code fill:#212F3C,stroke:#1DB954,stroke-width:3px;
+                classDef api fill:#191414,stroke:#1DB954,stroke-width:4px,stroke-dasharray: 5 5;
+                classDef db fill:#191414,stroke:#f1c40f,stroke-width:4px;
+                classDef calc fill:#2c3e50,stroke:#9b59b6,stroke-width:3px;
+                classDef final fill:#1DB954,stroke:#fff,stroke-width:6px,color:#000,font-size:24px;
+
+                %% Force link styles to be thick and visible
+                linkStyle default stroke:#fff,stroke-width:5px,fill:none;
+        </div>
+    </div>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+
+</html>
